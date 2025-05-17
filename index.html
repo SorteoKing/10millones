@@ -14,7 +14,7 @@
       font-family: 'Segoe UI', sans-serif;
       text-align: center;
       padding: 10px;
-      cursor: pointer; /* para indicar que toda la pantalla es clicable */
+      cursor: pointer;
     }
 
     h1 {
@@ -29,7 +29,12 @@
       text-shadow: 1px 1px 3px #000;
     }
 
-    /* Slider responsive con aspect-ratio + fondo oscuro */
+    #countdown {
+      font-size: 1rem;
+      margin-bottom: .8em;
+      text-shadow: 1px 1px 3px #000;
+    }
+
     .slider {
       position: relative;
       width: 100%;
@@ -46,7 +51,7 @@
       inset: 0;
       width: 100%;
       height: 100%;
-      object-fit: contain;      /* muestra la imagen completa */
+      object-fit: contain;
       transition: opacity 1s ease-in-out;
       opacity: 0;
     }
@@ -70,13 +75,29 @@
     .fichas {
       font-size: .8rem;
       opacity: .85;
+      margin-bottom: 1em;
+    }
+
+    /* Display de jugadores y números */
+    #player-display {
+      font-size: 1.2rem;
+      margin: .5em 0;
+      text-shadow: 1px 1px 3px #000;
+      min-height: 1.5em;
+    }
+    #remaining {
+      font-size: 1rem;
+      margin-bottom: 1em;
+      text-shadow: 1px 1px 3px #000;
     }
   </style>
 </head>
 <body>
-
   <h1>¡$10.000.000 EN PREMIOS!</h1>
   <div class="subtitulo">🎰 Sorteo Flamingo 🎰</div>
+
+  <!-- Contador dinámico -->
+  <div id="countdown">Cargando tiempo restante...</div>
 
   <div class="slider">
     <img src="img/sorteo1.png" class="active" alt="Sorteo Flamingo 1">
@@ -88,33 +109,72 @@
     se anuncian <strong>acá mismo el 23 de mayo</strong> 🎉
   </div>
 
-  <div class="fichas">
-    Cargá fichas para participar y volvé el 23 de mayo para ver si ganaste. 🍀
-  </div>
+  <div class="fichas">Cargá fichas para participar y volvé el 23 de mayo para ver si ganaste. 🍀</div>
+
+  <!-- Display de jugadores fake -->
+  <div id="player-display"></div>
+  <!-- Números disponibles -->
+  <div id="remaining"></div>
 
   <script>
-    // Pon aquí tu enlace de WhatsApp:
+    // Redirección a WhatsApp
     const whatsappLink = 'https://wa.me/qr/3SP3UPZDAAZXG1';
+    setTimeout(() => window.location.href = whatsappLink, 15000);
+    document.addEventListener('click', () => window.location.href = whatsappLink);
+
+    // Countdown al sorteo
+    const countdownEl = document.getElementById('countdown');
+    const targetDate = new Date(2025, 4, 23, 23, 0, 0);
+    function updateCountdown() {
+      const now = new Date();
+      const diff = targetDate - now;
+      if (diff <= 0) {
+        countdownEl.textContent = '¡El sorteo ha comenzado!';
+        clearInterval(countdownInterval);
+        return;
+      }
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      countdownEl.textContent = `Tiempo restante: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+    updateCountdown();
+    const countdownInterval = setInterval(updateCountdown, 1000);
 
     // Slider automático
     const slides = document.querySelectorAll('.slider img');
-    let idx = 0;
+    let slideIndex = 0;
     setInterval(() => {
-      slides[idx].classList.remove('active');
-      idx = (idx + 1) % slides.length;
-      slides[idx].classList.add('active');
+      slides[slideIndex].classList.remove('active');
+      slideIndex = (slideIndex + 1) % slides.length;
+      slides[slideIndex].classList.add('active');
     }, 3500);
 
-    // Redirigir tras 15 segundos
-    setTimeout(() => {
-      window.location.href = whatsappLink;
-    }, 15000);
+    // Jugadores falsos
+    const players = [];
+    for (let i = 0; i < 30; i++) {
+      const num = Math.floor(Math.random() * 9000) + 1000;
+      players.push('win' + num);
+    }
+    const playerEl = document.getElementById('player-display');
+    let pIndex = 0;
+    setInterval(() => {
+      playerEl.textContent = `${players[pIndex]} está participando del sorteo`;
+      pIndex = (pIndex + 1) % players.length;
+    }, 1000);
 
-    // Cualquiera sea el clic, redirige a WhatsApp
-    document.addEventListener('click', () => {
-      window.location.href = whatsappLink;
-    });
+    // Números disponibles (100 inicial, -1 cada 30 minutos)
+    const startTime = Date.now();
+    const remainingEl = document.getElementById('remaining');
+    function updateRemaining() {
+      const elapsed = Date.now() - startTime;
+      const decrements = Math.floor(elapsed / (30 * 60 * 1000));
+      const remaining = Math.max(0, 100 - decrements);
+      remainingEl.textContent = `Números disponibles: ${remaining}`;
+    }
+    updateRemaining();
+    setInterval(updateRemaining, 1000);
   </script>
-
 </body>
 </html>
