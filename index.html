@@ -15,14 +15,8 @@
 
     h1 {
       font-size: 1.8rem;
-      margin-bottom: 0.5em;
+      margin-bottom: 1em;
       text-shadow: 1px 1px 4px #000;
-    }
-
-    #countdown {
-      font-size: 1.2rem;
-      margin-bottom: 1.2em;
-      text-shadow: 1px 1px 3px #000;
     }
 
     .slider {
@@ -68,10 +62,8 @@
       max-width: 360px;
       font-weight: bold;
       box-shadow: 0 0 10px #000;
-      animation: fadeIn 1s ease forwards;
-      min-height: 3em;
       font-size: 1.1rem;
-      display: none;
+      animation: fadeIn 1s ease forwards;
     }
 
     @keyframes fadeIn {
@@ -82,7 +74,6 @@
 </head>
 <body>
   <h1>🏆 ¡GANADORES DEL SORTEO FLAMINGO! 🏆</h1>
-  <div id="countdown">Cargando cuenta regresiva...</div>
 
   <!-- Slider de imágenes -->
   <div class="slider">
@@ -92,11 +83,17 @@
 
   <!-- Ganadores -->
   <div class="ganadores">
-    <div id="box1" class="box"></div>
-    <div id="box2" class="box"></div>
-    <div id="box3" class="box"></div>
-    <div id="box4" class="box"></div>
-    <div id="box5" class="box"></div>
+    <div class="box">
+      Ganador $5.000.000: Nº 2 (Federicowin230)<br>
+      Ganador $3.000.000: Nº 153 (miliwin33)
+    </div>
+    <div class="box">
+      Ganador $1.500.000: Nº 372 (carlosflamingo1996)<br>
+      Ganador $600.000: Nº 267 (agustina4065)
+    </div>
+    <div class="box">
+      Ganador $400.000: Nº 200 (marcela1989)
+    </div>
   </div>
 
   <script>
@@ -108,63 +105,6 @@
       slideIndex = (slideIndex + 1) % slides.length;
       slides[slideIndex].classList.add('active');
     }, 3500);
-
-    // Contador hasta hoy a las 12:30hs
-    const countdownEl = document.getElementById('countdown');
-    const targetDate = new Date(2025, 4, 26, 12, 30, 0); // 26 mayo 2025, 12:30
-
-    function updateCountdown() {
-      const now = new Date();
-      const diff = targetDate - now;
-
-      if (diff <= 0) {
-        countdownEl.textContent = '¡El sorteo ha comenzado!';
-        clearInterval(countdownInterval);
-        iniciarSorteo();
-        return;
-      }
-
-      const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const s = Math.floor((diff % (1000 * 60)) / 1000);
-      countdownEl.textContent = `Sorteo en: ${h}h ${m}m ${s}s`;
-    }
-
-    const countdownInterval = setInterval(updateCountdown, 1000);
-    updateCountdown();
-
-    // Datos finales
-    const ganadores = [
-      { premio: '5.000.000', numero: 2, nombre: 'Federicowin230' },
-      { premio: '3.000.000', numero: 153, nombre: 'miliwin33' },
-      { premio: '1.500.000', numero: 372, nombre: 'carlosflamingo1996' },
-      { premio: '600.000', numero: 267, nombre: 'agustina4065' },
-      { premio: '400.000', numero: 200, nombre: 'marcela1989' }
-    ];
-
-    // Inicia el “sorteo”
-    function iniciarSorteo() {
-      ganadores.forEach((g, i) => {
-        simularSorteo(`box${i+1}`, g, 10000); // 10 segundos para cada box
-      });
-    }
-
-    // Simulación tipo "sorteo girando"
-    function simularSorteo(boxId, ganador, duracionMs) {
-      const el = document.getElementById(boxId);
-      el.style.display = 'block';
-      const intervalo = 50;
-      let tiempo = 0;
-      const intervalId = setInterval(() => {
-        const numRandom = Math.floor(Math.random() * 400) + 1;
-        el.textContent = `Buscando... número ${numRandom}`;
-        tiempo += intervalo;
-        if (tiempo >= duracionMs) {
-          clearInterval(intervalId);
-          el.textContent = `Ganador de los $${ganador.premio}: número ${ganador.numero} (${ganador.nombre})`;
-        }
-      }, intervalo);
-    }
   </script>
 </body>
 </html>
