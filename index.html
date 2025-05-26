@@ -1,37 +1,27 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8"/>
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sorteo Flamingo</title>
+  <title>Ganadores Sorteo Flamingo</title>
   <style>
-    /* Reset ligero */
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
       background: radial-gradient(circle at center, #8b0000, #330000);
       color: gold;
       font-family: 'Segoe UI', sans-serif;
       text-align: center;
-      padding: 10px;
-      cursor: pointer;
+      padding: 20px;
     }
 
     h1 {
-      font-size: 1.6rem;
-      margin-bottom: .3em;
+      font-size: 1.8rem;
+      margin-bottom: 0.5em;
       text-shadow: 1px 1px 4px #000;
     }
 
-    .subtitulo {
-      font-size: .9rem;
-      margin-bottom: .8em;
-      text-shadow: 1px 1px 3px #000;
-    }
-
     #countdown {
-      font-size: 1rem;
-      margin-bottom: .8em;
+      font-size: 1.2rem;
+      margin-bottom: 1.2em;
       text-shadow: 1px 1px 3px #000;
     }
 
@@ -40,109 +30,77 @@
       width: 100%;
       max-width: 320px;
       aspect-ratio: 16/9;
-      margin: 0 auto 1em;
+      margin: 1em auto;
       overflow: hidden;
-      border-radius: 8px;
+      border-radius: 10px;
       background: #330000;
       box-shadow: 0 0 8px #000;
     }
+
     .slider img {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       object-fit: contain;
-      transition: opacity 1s ease-in-out;
       opacity: 0;
+      transition: opacity 1s ease-in-out;
     }
+
     .slider img.active {
       opacity: 1;
     }
 
-    .anuncio {
-      background: #ffcc00;
+    .ganadores {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .box {
+      background: #ffd700;
       color: #800000;
-      font-size: .9rem;
-      line-height: 1.3;
-      padding: 8px 12px;
       border-radius: 8px;
+      padding: 1em;
+      width: 90%;
+      max-width: 360px;
       font-weight: bold;
-      max-width: 90%;
-      margin: 0 auto .8em;
-      box-shadow: 0 0 8px #ffd700;
+      box-shadow: 0 0 10px #000;
+      animation: fadeIn 1s ease forwards;
+      min-height: 3em;
+      font-size: 1.1rem;
+      display: none;
     }
 
-    .fichas {
-      font-size: .8rem;
-      opacity: .85;
-      margin-bottom: 1em;
-    }
-
-    /* Display de jugadores y números */
-    #player-display {
-      font-size: 1.2rem;
-      margin: .5em 0;
-      text-shadow: 1px 1px 3px #000;
-      min-height: 1.5em;
-    }
-    #remaining {
-      font-size: 1rem;
-      margin-bottom: 1em;
-      text-shadow: 1px 1px 3px #000;
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
     }
   </style>
 </head>
 <body>
-  <h1>¡$10.000.000 EN PREMIOS!</h1>
-  <div class="subtitulo">🎰 Sorteo Flamingo 🎰</div>
+  <h1>🏆 ¡GANADORES DEL SORTEO FLAMINGO! 🏆</h1>
+  <div id="countdown">Cargando cuenta regresiva...</div>
 
-  <!-- Contador dinámico -->
-  <div id="countdown">Cargando tiempo restante...</div>
-
+  <!-- Slider de imágenes -->
   <div class="slider">
     <img src="img/sorteo1.png" class="active" alt="Sorteo Flamingo 1">
     <img src="img/sorteo2.png" alt="Sorteo Flamingo 2">
   </div>
 
-  <div class="anuncio">
-    El sorteo y los <strong>5 números ganadores</strong><br>
-    se anuncian <strong>acá mismo el 23 de mayo</strong> 🎉
+  <!-- Ganadores -->
+  <div class="ganadores">
+    <div id="box1" class="box"></div>
+    <div id="box2" class="box"></div>
+    <div id="box3" class="box"></div>
+    <div id="box4" class="box"></div>
+    <div id="box5" class="box"></div>
   </div>
 
-  <div class="fichas">Cargá fichas para participar y volvé el 23 de mayo para ver si ganaste. 🍀</div>
-
-  <!-- Display de jugadores fake -->
-  <div id="player-display"></div>
-  <!-- Números disponibles -->
-  <div id="remaining"></div>
-
   <script>
-    // Redirección a WhatsApp
-    const whatsappLink = 'https://wa.me/qr/3SP3UPZDAAZXG1';
-    setTimeout(() => window.location.href = whatsappLink, 15000);
-    document.addEventListener('click', () => window.location.href = whatsappLink);
-
-    // Countdown al sorteo
-    const countdownEl = document.getElementById('countdown');
-    const targetDate = new Date(2025, 4, 23, 23, 0, 0);
-    function updateCountdown() {
-      const now = new Date();
-      const diff = targetDate - now;
-      if (diff <= 0) {
-        countdownEl.textContent = '¡El sorteo ha comenzado!';
-        clearInterval(countdownInterval);
-        return;
-      }
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-      countdownEl.textContent = `Tiempo restante: ${days}d ${hours}h ${minutes}m ${seconds}s`;
-    }
-    updateCountdown();
-    const countdownInterval = setInterval(updateCountdown, 1000);
-
-    // Slider automático
+    // Slider
     const slides = document.querySelectorAll('.slider img');
     let slideIndex = 0;
     setInterval(() => {
@@ -151,30 +109,62 @@
       slides[slideIndex].classList.add('active');
     }, 3500);
 
-    // Jugadores falsos
-    const players = [];
-    for (let i = 0; i < 30; i++) {
-      const num = Math.floor(Math.random() * 9000) + 1000;
-      players.push('win' + num);
-    }
-    const playerEl = document.getElementById('player-display');
-    let pIndex = 0;
-    setInterval(() => {
-      playerEl.textContent = `${players[pIndex]} está participando del sorteo`;
-      pIndex = (pIndex + 1) % players.length;
-    }, 1000);
+    // Contador hasta hoy a las 12:30hs
+    const countdownEl = document.getElementById('countdown');
+    const targetDate = new Date(2025, 4, 26, 12, 30, 0); // 26 mayo 2025, 12:30
 
-    // Números disponibles (100 inicial, -1 cada 30 minutos)
-    const startTime = Date.now();
-    const remainingEl = document.getElementById('remaining');
-    function updateRemaining() {
-      const elapsed = Date.now() - startTime;
-      const decrements = Math.floor(elapsed / (30 * 60 * 1000));
-      const remaining = Math.max(0, 100 - decrements);
-      remainingEl.textContent = `Números disponibles: ${remaining}`;
+    function updateCountdown() {
+      const now = new Date();
+      const diff = targetDate - now;
+
+      if (diff <= 0) {
+        countdownEl.textContent = '¡El sorteo ha comenzado!';
+        clearInterval(countdownInterval);
+        iniciarSorteo();
+        return;
+      }
+
+      const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const s = Math.floor((diff % (1000 * 60)) / 1000);
+      countdownEl.textContent = `Sorteo en: ${h}h ${m}m ${s}s`;
     }
-    updateRemaining();
-    setInterval(updateRemaining, 1000);
+
+    const countdownInterval = setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // Datos finales
+    const ganadores = [
+      { premio: '5.000.000', numero: 2, nombre: 'Federicowin230' },
+      { premio: '3.000.000', numero: 135, nombre: 'miliwin33' },
+      { premio: '1.500.000', numero: 372, nombre: 'carlosflamingo1996' },
+      { premio: '600.000', numero: 267, nombre: 'agustina4065' },
+      { premio: '400.000', numero: 200, nombre: 'marcela1989' }
+    ];
+
+    // Inicia el “sorteo”
+    function iniciarSorteo() {
+      ganadores.forEach((g, i) => {
+        simularSorteo(`box${i+1}`, g, 10000); // 10 segundos para cada box
+      });
+    }
+
+    // Simulación tipo "sorteo girando"
+    function simularSorteo(boxId, ganador, duracionMs) {
+      const el = document.getElementById(boxId);
+      el.style.display = 'block';
+      const intervalo = 50;
+      let tiempo = 0;
+      const intervalId = setInterval(() => {
+        const numRandom = Math.floor(Math.random() * 400) + 1;
+        el.textContent = `Buscando... número ${numRandom}`;
+        tiempo += intervalo;
+        if (tiempo >= duracionMs) {
+          clearInterval(intervalId);
+          el.textContent = `Ganador de los $${ganador.premio}: número ${ganador.numero} (${ganador.nombre})`;
+        }
+      }, intervalo);
+    }
   </script>
 </body>
 </html>
