@@ -1,110 +1,59 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ganadores Sorteo Flamingo</title>
+  <meta charset="UTF-8">
+  <title>Casino Contacto</title>
   <style>
     body {
-      background: radial-gradient(circle at center, #8b0000, #330000);
-      color: gold;
-      font-family: 'Segoe UI', sans-serif;
+      background: radial-gradient(circle, #1a1a1a, #000);
+      color: #fff;
+      font-family: 'Arial', sans-serif;
       text-align: center;
-      padding: 20px;
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
     }
 
     h1 {
-      font-size: 1.8rem;
-      margin-bottom: 1em;
-      text-shadow: 1px 1px 4px #000;
+      font-size: 2em;
+      margin-bottom: 40px;
+      color: gold;
+      text-shadow: 2px 2px 5px #ff0000;
     }
 
-    .slider {
-      position: relative;
-      width: 100%;
-      max-width: 320px;
-      aspect-ratio: 16/9;
-      margin: 1em auto;
-      overflow: hidden;
+    a.boton {
+      display: inline-block;
+      padding: 20px 30px;
+      font-size: 1.2em;
+      color: white;
+      background: linear-gradient(to right, #e60000, #ff9900);
+      border: none;
       border-radius: 10px;
-      background: #330000;
-      box-shadow: 0 0 8px #000;
-    }
-
-    .slider img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-    }
-
-    .slider img.active {
-      opacity: 1;
-    }
-
-    .ganadores {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 15px;
-      margin-top: 30px;
-    }
-
-    .box {
-      background: #ffd700;
-      color: #800000;
-      border-radius: 8px;
-      padding: 1em;
-      width: 90%;
-      max-width: 360px;
+      text-decoration: none;
       font-weight: bold;
-      box-shadow: 0 0 10px #000;
-      font-size: 1.1rem;
-      animation: fadeIn 1s ease forwards;
+      box-shadow: 0 0 20px #ff0000;
+      animation: pulso 1.5s infinite;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
+    @keyframes pulso {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    a.boton:hover {
+      background: linear-gradient(to right, #ff0000, #ffaa00);
+      box-shadow: 0 0 30px #ff0000;
     }
   </style>
 </head>
 <body>
-  <h1>🏆 ¡GANADORES DEL SORTEO FLAMINGO! 🏆</h1>
-
-  <!-- Slider de imágenes -->
-  <div class="slider">
-    <img src="img/sorteo1.png" class="active" alt="Sorteo Flamingo 1">
-    <img src="img/sorteo2.png" alt="Sorteo Flamingo 2">
-  </div>
-
-  <!-- Ganadores -->
-  <div class="ganadores">
-    <div class="box">
-      Ganador $5.000.000: Nº 2 (Federicowin230)<br>
-      Ganador $3.000.000: Nº 153 (miliwin33)
-    </div>
-    <div class="box">
-      Ganador $1.500.000: Nº 372 (carlosflamingo1996)<br>
-      Ganador $600.000: Nº 267 (agustina4065)
-    </div>
-    <div class="box">
-      Ganador $400.000: Nº 200 (marcela1989)
-    </div>
-  </div>
-
-  <script>
-    // Slider
-    const slides = document.querySelectorAll('.slider img');
-    let slideIndex = 0;
-    setInterval(() => {
-      slides[slideIndex].classList.remove('active');
-      slideIndex = (slideIndex + 1) % slides.length;
-      slides[slideIndex].classList.add('active');
-    }, 3500);
-  </script>
+  <h1>¡BONUS Y FICHAS TE ESPERAN!</h1>
+  <a class="boton" href="https://wa.me/5491171401041" target="_blank">
+    CONTACTATE POR WHATSAPP<br>PRECIONANDO AQUÍ
+  </a>
 </body>
 </html>
