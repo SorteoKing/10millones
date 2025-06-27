@@ -2,58 +2,27 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Casino Contacto</title>
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      background: radial-gradient(circle, #1a1a1a, #000);
-      color: #fff;
-      font-family: 'Arial', sans-serif;
-      text-align: center;
-      height: 100vh;
+      background-color: #000;
       margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-    }
-
-    h1 {
-      font-size: 2em;
-      margin-bottom: 40px;
-      color: gold;
-      text-shadow: 2px 2px 5px #ff0000;
-    }
-
-    a.boton {
-      display: inline-block;
-      padding: 20px 30px;
-      font-size: 1.2em;
-      color: white;
-      background: linear-gradient(to right, #e60000, #ff9900);
-      border: none;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: bold;
-      box-shadow: 0 0 20px #ff0000;
-      animation: pulso 1.5s infinite;
-    }
-
-    @keyframes pulso {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
-
-    a.boton:hover {
-      background: linear-gradient(to right, #ff0000, #ffaa00);
-      box-shadow: 0 0 30px #ff0000;
     }
   </style>
 </head>
 <body>
-  <h1>¡BONUS Y FICHAS TE ESPERAN!</h1>
-  <a class="boton" href="https://wa.me/5491171401041" target="_blank">
-    CONTACTATE POR WHATSAPP<br>PRECIONANDO AQUÍ
-  </a>
+  <script>
+    const linkWsp = "https://wa.me/5491171401041?text=QUIERO%20MI%20USUARIO%20Y%20MI%20REGALO%20DE%20BIENVENIDA";
+
+    // Anula el botón "Atrás"
+    history.pushState(null, null, location.href);
+    window.onpopstate = function () {
+      history.go(1); // impide volver
+    };
+
+    // Redirige automáticamente
+    window.location.href = linkWsp;
+  </script>
 </body>
 </html>
