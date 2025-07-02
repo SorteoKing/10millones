@@ -1,0 +1,72 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+  font-family: 'Segoe UI', sans-serif;
+  color: #111111;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  min-height: 100vh;
+}
+
+.card {
+  background-color: #f8f8f8;
+  border-radius: 20px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+  max-width: 400px;
+  width: 100%;
+}
+
+.main-image {
+  width: 100%;
+  max-width: 250px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.titulo-verificado {
+  font-size: 24px;
+  color: #2e7d32;
+  margin-bottom: 10px;
+}
+
+.subtitulo-confianza {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.texto-bonus {
+  font-size: 16px;
+  margin: 8px 0;
+}
+
+.boton-whatsapp {
+  display: inline-block;
+  background-color: #4AD810;
+  color: white;
+  text-decoration: none;
+  padding: 15px 25px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 50px;
+  margin: 25px 0;
+  transition: background-color 0.3s ease;
+}
+
+.boton-whatsapp:hover {
+  background-color: #3cbf0f;
+}
+
+.clientes {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #555;
+}

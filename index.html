@@ -2,90 +2,36 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>🎰 BONO DE BIENVENIDA</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      background: radial-gradient(circle, #1a1a1a, #000);
-      color: #fff;
-      font-family: 'Arial', sans-serif;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      cursor: pointer;
-    }
-
-    h1 {
-      font-size: 2.2em;
-      color: gold;
-      text-shadow: 2px 2px 10px #ff0000;
-      margin-bottom: 20px;
-    }
-
-    p {
-      font-size: 1.2em;
-      color: #fff;
-      margin: 10px 20px 30px;
-    }
-
-    .destello {
-      border: 2px solid gold;
-      padding: 20px 40px;
-      border-radius: 20px;
-      background: linear-gradient(to right, #ff0000, #ffaa00);
-      box-shadow: 0 0 25px #ff0000;
-      font-size: 1.5em;
-      font-weight: bold;
-      animation: brillar 1.5s infinite;
-    }
-
-    @keyframes brillar {
-      0% { box-shadow: 0 0 25px #ff0000; }
-      50% { box-shadow: 0 0 40px #ff9900; }
-      100% { box-shadow: 0 0 25px #ff0000; }
-    }
-  </style>
-
-
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '705292575739286');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=705292575739286&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-  
+  <title>Casino Verificado</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body onclick="redirigirAWhatsApp()">
+<body>
 
-  <h1>¡REGALO EXCLUSIVO DE BIENVENIDA! 🎁</h1>
- 
-  <div class="destello">🔥 TOCÁ PARA RECLAMAR 🔥</div>
+  <main class="container">
+    
+    <section class="card">
+      <img src="anuncio.png" alt="Anuncio principal" class="main-image">
 
-  <script>
-    function redirigirAWhatsApp() {
-      const linkWsp = "https://wa.me/5491171401041?text=QUIERO%20MI%20USUARIO%20Y%20MI%20REGALO%20DE%20BIENVENIDA";
-      window.location.href = linkWsp;
-    }
-  </script>
+      <h1 class="titulo-verificado">✅ Página Verificada</h1>
+      <h2 class="subtitulo-confianza">🎰 Casino de Confianza</h2>
+
+      <p class="texto-bonus">Hasta <strong>200% BONUS</strong> en tu primera carga</p>
+      <p class="texto-bonus">🎁 Regalos todos los días</p>
+      <p class="texto-bonus">🏆 Sorteos semanales por grandes premios</p>
+
+      <a href="https://wa.me/5491112345678" class="boton-whatsapp">
+        📲 Recibir mi regalo por WhatsApp
+      </a>
+
+      <div class="clientes">
+        <p>🔒 Plataforma segura y auditada</p>
+        <p>⭐ 4.9/5 en satisfacción de jugadores</p>
+        <p>👥 Más de <strong>10.000 personas</strong> ganando todos los días</p>
+      </div>
+    </section>
+
+  </main>
+
 </body>
 </html>
